@@ -57,10 +57,9 @@ addItem()
 
 function removeData(target) {
     const array = getDataLocStr()
-    localStorage.setItem('data', JSON.stringify(array))
-
     const idx = Number(target.parentElement.getAttribute('data-index'))
     array.splice(idx, 1)
+    localStorage.setItem('data', JSON.stringify(array))
 }
 
 function updateCkeckedEl(target) {
