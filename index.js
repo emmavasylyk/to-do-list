@@ -46,25 +46,17 @@ function addItem() {
 }
 
 function classСheck({ target }) {
+    let array = getDataLocStr()
+    let idx
     if (target.classList.contains('btn-remove')) {
-        removeData(target)
+        idx = Number(target.parentElement.getAttribute('data-index'))
+        array.splice(idx, 1)
     } else if (target.tagName === 'LI') {
-        updateCkeckedEl(target);
+        idx = Number(target.getAttribute('data-index'))
+        array[idx].result = !array[idx].result
     }
+    localStorage.setItem('data', JSON.stringify(array))
+
     addItem()
 }
 addItem()
-
-function removeData(target) {
-    const array = getDataLocStr()
-    const idx = Number(target.parentElement.getAttribute('data-index'))
-    array.splice(idx, 1)
-    localStorage.setItem('data', JSON.stringify(array))
-}
-
-function updateCkeckedEl(target) {
-    const idx = Number(target.getAttribute('data-index'))
-    const array = getDataLocStr()
-    array[idx].result = !array[idx].result;
-    localStorage.setItem('data', JSON.stringify(array))
-}
